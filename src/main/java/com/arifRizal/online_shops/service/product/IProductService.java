@@ -1,17 +1,19 @@
 package com.arifRizal.online_shops.service.product;
 
 import com.arifRizal.online_shops.model.Product;
+import com.arifRizal.online_shops.request.AddProductRequest;
+import com.arifRizal.online_shops.request.UpdateProductRequest;
 
 import java.util.List;
 
 
 public interface IProductService {
 
-  Product addProduct(Product product);
+  Product addProduct(AddProductRequest request);
 
   Product getProductById(Long id);
   void deleteProductById(Long id);
-  void updateProduct(Product product, Long productId);
+  Product updateProduct(UpdateProductRequest request, Long productId);
   List<Product> getAllProducts();
   List<Product> getProductsByCategory(String category);
   List<Product> getProductsByBrand(String brand);
