@@ -1,5 +1,6 @@
 package com.arifRizal.online_shops.service.category;
 
+import com.arifRizal.online_shops.exception.AlreadyExistsException;
 import com.arifRizal.online_shops.exception.CategoryNotFoundException;
 import com.arifRizal.online_shops.model.Category;
 import com.arifRizal.online_shops.repository.CategoryRepository;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +17,8 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public Category addCategory(Category category) {
-        return null;
+        return Optional.of(category).filter(c -> ! categoryRepository.existByName(c.getName()))
+                .map(categoryRepository :: save).orElseThrow(() -> new AlreadyExistsException(category.getName()+ "Already Exists"));
     }
 
     @Override
@@ -35,7 +38,13 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public Category updateCategory(Category category, Long id) {
-        return null;
+        return Optional.ofNullable(getCategoryById(id)).map(oldCategory -> {
+            oldCategory.setName(category.getName());
+            return categoryRepository.save(oldCategory);
+        }).orElseThrow(() -> new CategoryNotFoundException("Category Not Found"));
+
+
+
     }
 
     @Override
