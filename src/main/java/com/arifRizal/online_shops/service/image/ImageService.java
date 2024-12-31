@@ -1,7 +1,7 @@
 package com.arifRizal.online_shops.service.image;
 
 import com.arifRizal.online_shops.dto.ImageDto;
-import com.arifRizal.online_shops.exception.ResourceNotFound;
+import com.arifRizal.online_shops.exception.ResourceNotFoundException;
 import com.arifRizal.online_shops.model.Image;
 import com.arifRizal.online_shops.model.Product;
 import com.arifRizal.online_shops.repository.ImageRepository;
@@ -24,13 +24,13 @@ public class ImageService implements IMageService{
 
     @Override
     public Image getImageById(Long id) {
-        return imageRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Image Not Found " + id));
+        return imageRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Image Not Found " + id));
     }
 
     @Override
     public void deleteImageById(Long id) {
         imageRepository.findById(id).ifPresentOrElse(imageRepository::delete, () -> {
-            throw new ResourceNotFound("Image Not Found " + id);
+            throw new ResourceNotFoundException("Image Not Found " + id);
         });
     }
 

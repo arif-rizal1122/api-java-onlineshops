@@ -2,7 +2,7 @@ package com.arifRizal.online_shops.controller;
 
 
 import com.arifRizal.online_shops.dto.ImageDto;
-import com.arifRizal.online_shops.exception.ResourceNotFound;
+import com.arifRizal.online_shops.exception.ResourceNotFoundException;
 import com.arifRizal.online_shops.model.Image;
 import com.arifRizal.online_shops.response.ApiResponse;
 import com.arifRizal.online_shops.service.image.ImageService;
@@ -56,7 +56,7 @@ public class ImageController {
                 imageService.updateImage(file, imageId);
                 return ResponseEntity.ok(new ApiResponse("Updated Success!", null));
             }
-        } catch (ResourceNotFound e) {return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Updated Failed!", null));
+        } catch (ResourceNotFoundException e) {return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Updated Failed!", null));
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Updated Failed!", HttpStatus.INTERNAL_SERVER_ERROR));
     }
@@ -71,7 +71,7 @@ public class ImageController {
                 imageService.deleteImageById(imageId);
                 return ResponseEntity.ok(new ApiResponse("Delete Success!", null));
             }
-        } catch (ResourceNotFound e) {return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Updated Failed!", null));
+        } catch (ResourceNotFoundException e) {return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Updated Failed!", null));
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Delete Failed!", HttpStatus.INTERNAL_SERVER_ERROR));
     }

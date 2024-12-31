@@ -1,7 +1,7 @@
 package com.arifRizal.online_shops.service.category;
 
 import com.arifRizal.online_shops.exception.AlreadyExistsException;
-import com.arifRizal.online_shops.exception.ResourceNotFound;
+import com.arifRizal.online_shops.exception.ResourceNotFoundException;
 import com.arifRizal.online_shops.model.Category;
 import com.arifRizal.online_shops.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public Category getCategoryById(Long id) {
-       return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Category Not Found"));
+       return categoryRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Category Not Found"));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CategoryService implements ICategoryService{
         return Optional.ofNullable(getCategoryById(id)).map(oldCategory -> {
             oldCategory.setName(category.getName());
             return categoryRepository.save(oldCategory);
-        }).orElseThrow(() -> new ResourceNotFound("Category Not Found"));
+        }).orElseThrow(() -> new ResourceNotFoundException("Category Not Found"));
 
 
 
@@ -51,7 +51,7 @@ public class CategoryService implements ICategoryService{
     public void deleteCategoryById(Long id) {
        categoryRepository.findById(id)
                .ifPresentOrElse(categoryRepository::delete, () -> {
-           throw new ResourceNotFound("Category Not Found");
+           throw new ResourceNotFoundException("Category Not Found");
        });
     }
 }
