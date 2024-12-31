@@ -4,7 +4,6 @@ package com.arifRizal.online_shops.controller;
 import com.arifRizal.online_shops.dto.ImageDto;
 import com.arifRizal.online_shops.exception.ResourceNotFound;
 import com.arifRizal.online_shops.model.Image;
-import com.arifRizal.online_shops.model.Product;
 import com.arifRizal.online_shops.response.ApiResponse;
 import com.arifRizal.online_shops.service.image.ImageService;
 import lombok.RequiredArgsConstructor;
