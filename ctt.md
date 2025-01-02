@@ -5,3 +5,4 @@
    - setting anotation nya sudah diatur
    - disini untuk referensi lombok nya keluar
    - saat aplikasi dijalankan sebelum lombok diimplementasikan dalam project lombok nya berjalan di terminal nya
+2. 

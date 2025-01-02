@@ -20,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ImageService implements IMageService{
     private final ImageRepository imageRepository;
-    private ProductService productService;
+    private final ProductService productService;
 
     @Override
     public Image getImageById(Long id) {
