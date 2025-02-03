@@ -9,9 +9,8 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
-
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Product {
@@ -31,7 +30,6 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
 
-
     public Product(String name, String brand, BigDecimal price, int inventory, String description, Category category) {
         this.name = name;
         this.brand = brand;
@@ -40,6 +38,4 @@ public class Product {
         this.description = description;
         this.category = category;
     }
-
-
 }

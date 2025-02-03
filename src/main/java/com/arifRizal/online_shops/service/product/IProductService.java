@@ -1,5 +1,6 @@
 package com.arifRizal.online_shops.service.product;
 
+import com.arifRizal.online_shops.dto.ProductDto;
 import com.arifRizal.online_shops.model.Product;
 import com.arifRizal.online_shops.request.AddProductRequest;
 import com.arifRizal.online_shops.request.UpdateProductRequest;
@@ -22,4 +23,7 @@ public interface IProductService {
   List<Product> getProductByBrandAndName(String brand, String name);
   Long countProductsByBrandAndName(String brand, String name);
 
+  List<ProductDto> getConvertProducts(List<Product> products);
+
+  ProductDto convertToDto(Product product);
 }

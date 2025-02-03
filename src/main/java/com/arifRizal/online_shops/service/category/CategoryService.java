@@ -17,7 +17,7 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public Category addCategory(Category category) {
-        return Optional.of(category).filter(c -> ! categoryRepository.existByName(c.getName()))
+        return Optional.of(category).filter(c -> ! categoryRepository.existsByName(c.getName()))
                 .map(categoryRepository :: save).orElseThrow(() -> new AlreadyExistsException(category.getName()+ "Already Exists"));
     }
 
@@ -42,9 +42,6 @@ public class CategoryService implements ICategoryService{
             oldCategory.setName(category.getName());
             return categoryRepository.save(oldCategory);
         }).orElseThrow(() -> new ResourceNotFoundException("Category Not Found"));
-
-
-
     }
 
     @Override
